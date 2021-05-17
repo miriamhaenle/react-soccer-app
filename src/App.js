@@ -128,7 +128,9 @@ function App() {
           value={player.email}
         />
         <Button isPrimary>Add player</Button>
-        <Button>Cancel</Button>
+        <Button type="reset" onClick={() => setPlayer(initialPlayerState)}>
+          Cancel
+        </Button>
       </Form>
     </div>
   );
