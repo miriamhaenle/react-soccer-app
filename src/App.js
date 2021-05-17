@@ -186,5 +186,8 @@ const Button = styled.button`
   border-radius: 0.4rem;
   border: none;
   background: ${(props) =>
-    props.isPrimary ? 'hsl(222, 90%, 90%)' : 'hsla(222,90%,90%, 0.3)'};
+    props.isPrimary ? 'hsl(160, 60%, 50%)' : 'hsla(160, 60%, 80%, 0.3)'};
+  cursor: pointer;
+  font-weight: ${(props) => (props.isPrimary ? '600' : '100')};
+  font-size: 1.2rem;
 `;
