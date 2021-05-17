@@ -42,20 +42,23 @@ function App() {
           onChange={updatePlayer}
           value={player.name}
         />
-        <label htmlFor="price">Transfer Price in ($)</label>
+        <label htmlFor="price">Transfer Price (in €)</label>
         <input
           type="name"
           name="price"
           onChange={updatePlayer}
           value={player.price}
+          disabled={player.free_transfer}
         />
-        <label htmlFor="free_transfer">On a free transfer</label>
-        <input
-          type="checkbox"
-          name="free_transfer"
-          onChange={updatePlayer}
-          value={player.free_transfer}
-        />
+        <label>
+          <input
+            type="checkbox"
+            name="free_transfer"
+            onChange={updatePlayer}
+            value={player.free_transfer}
+          />
+          <span>On a free transfer</span>
+        </label>
         <label htmlFor="club">Club</label>
         <select
           name="club"
@@ -73,40 +76,48 @@ function App() {
           <option value="fc_st_pauli">FC St. Pauli</option>
         </select>
 
-        <label htmlFor="position">Position</label>
         <fieldset>
-          <input
-            type="radio"
-            name="position"
-            value="striker"
-            onChange={updatePlayer}
-            checked={player.position === 'striker'}
-          />
-          Striker
-          <input
-            type="radio"
-            name="position"
-            value="midfield"
-            onChange={updatePlayer}
-            checked={player.position === 'midfield'}
-          />
-          Midfield
-          <input
-            type="radio"
-            name="position"
-            value="defence"
-            onChange={updatePlayer}
-            checked={player.position === 'defence'}
-          />
-          Defence
-          <input
-            type="radio"
-            name="position"
-            value="goalie"
-            onChange={updatePlayer}
-            checked={player.position === 'goalie'}
-          />
-          Goalie
+          <legend>Position</legend>
+          <label>
+            <input
+              type="radio"
+              name="position"
+              value="striker"
+              onChange={updatePlayer}
+              checked={player.position === 'striker'}
+            />
+            Striker
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="position"
+              value="midfield"
+              onChange={updatePlayer}
+              checked={player.position === 'midfield'}
+            />
+            Midfield
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="position"
+              value="defence"
+              onChange={updatePlayer}
+              checked={player.position === 'defence'}
+            />
+            Defence
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="position"
+              value="goalie"
+              onChange={updatePlayer}
+              checked={player.position === 'goalie'}
+            />
+            Goalie
+          </label>
         </fieldset>
 
         <label htmlFor="email">Contact Email</label>
@@ -132,24 +143,41 @@ const Form = styled.form`
   margin: 0 auto;
   max-width: 25rem;
 
-  label {
+  label,
+  legend {
     font-weight: bold;
+    span {
+      font-weight: normal;
+    }
+  }
+
+  legend {
+    margin-bottom: 0.5rem;
+    padding: 0;
   }
 
   input,
   select {
     padding: 0.5rem;
+    margin-bottom: 0.3rem;
   }
 
   fieldset {
     border: none;
     display: flex;
     gap: 0.4rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  fieldset > label {
+    font-weight: normal;
   }
 
   input[type='radio'],
   input[type='checkbox'] {
     transform: scale(1.5);
+    margin-right: 0.5rem;
   }
 `;
 
