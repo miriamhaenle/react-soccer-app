@@ -120,7 +120,9 @@ export default function PlayerForm({ onAddPlayer }) {
         value={player.email}
       />
       <Button isPrimary>Add player</Button>
-      <Button type="reset">Cancel</Button>
+      <Button type="reset" onClick={() => setPlayer(initialPlayerState)}>
+        Cancel
+      </Button>
     </Form>
   );
 }
