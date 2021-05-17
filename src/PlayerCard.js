@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { ReactComponent as Football } from './assets/football.svg';
 
-export default function PlayerCard({ player }) {
+export default function PlayerCard({ player, onAddToShoppingCart }) {
   return (
     <Card>
-      <Football />
+      <Football onClick={() => onAddToShoppingCart(player)} />
       <h3>{player.name}</h3>
       <p>{player.price}</p>
       <p>{player.club}</p>

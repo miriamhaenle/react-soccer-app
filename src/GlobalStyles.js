@@ -14,6 +14,6 @@ body {
 }
 
 h1 {
-  text-align: center;
+  margin-left: 2rem;
 }
 `;
