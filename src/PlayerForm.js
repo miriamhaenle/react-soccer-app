@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components/macro';
 
-export default function PlayerForm() {
+export default function PlayerForm({ onAddPlayer }) {
   const initialPlayerState = {
     name: '',
     price: '',
@@ -23,13 +23,14 @@ export default function PlayerForm() {
     setPlayer({ ...player, [fieldName]: fieldValue });
   }
 
-  function addPlayer(event) {
+  function handleFormSubmit(event) {
     event.preventDefault();
-    console.log(player, 'State');
+    onAddPlayer(player);
   }
 
   return (
-    <Form onSubmit={addPlayer}>
+    <Form onSubmit={handleFormSubmit}>
+      <h2>Add new player</h2>
       <label htmlFor="playerName">Player Name</label>
       <input
         type="text"
