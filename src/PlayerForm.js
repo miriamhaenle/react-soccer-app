@@ -52,6 +52,7 @@ export default function PlayerForm({ onAddPlayer }) {
           name="free_transfer"
           onChange={updatePlayer}
           value={player.free_transfer}
+          disabled={player.price.length >= 1}
         />
         <span>On a free transfer</span>
       </label>
@@ -63,7 +64,7 @@ export default function PlayerForm({ onAddPlayer }) {
         <option value="vfb_stuttgart">VFB Stuttgart</option>
         <option value="rb_leipzeig">RB Leipzig</option>
         <option value="hansa_rostock">Hansa Rostock</option>
-        <option value="eintract_frankfurt">Eintract Frankfurt</option>
+        <option value="eintracht_frankfurt">Eintracht Frankfurt</option>
         <option value="fc_st_pauli">FC St. Pauli</option>
       </select>
 
@@ -119,7 +120,7 @@ export default function PlayerForm({ onAddPlayer }) {
         value={player.email}
       />
       <Button isPrimary>Add player</Button>
-      <Button>Cancel</Button>
+      <Button type="reset">Cancel</Button>
     </Form>
   );
 }

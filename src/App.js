@@ -22,7 +22,7 @@ function App() {
     <div>
       <Header>
         <h1>German Fußball Transfer Market</h1>
-        <Football />
+        <Football /> {shoppingCart.length} items
       </Header>
       <Grid>
         <PlayerForm onAddPlayer={addPlayer} />
@@ -44,7 +44,7 @@ export default App;
 
 const Header = styled.header`
   display: flex;
-  justify-content: space-between;
+  justify-content: space>-between;
   svg {
     width: 3rem;
     margin-right: 0.7rem;
