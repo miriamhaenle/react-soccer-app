@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import styled from 'styled-components/macro';
+import { Switch, Route, NavLink } from 'react-router-dom';
 import { ReactComponent as Football } from './assets/football.svg';
 import PlayerForm from './PlayerForm';
 import PlayerCard from './PlayerCard';
+import ShopingCart from './ShoppingCart';
 
 function App() {
   const [players, setPlayers] = useState([]);
@@ -21,21 +23,33 @@ function App() {
   return (
     <div>
       <Header>
-        <h1>German Fußball Transfer Market</h1>
-        <Football /> {shoppingCart.length} items
+        <NavLink to="/">
+          <h1>German Fußball Transfer Market</h1>
+        </NavLink>
+        <NavLink to="/cart">
+          <Football /> {shoppingCart.length} items
+        </NavLink>
       </Header>
-      <Grid>
-        <PlayerForm onAddPlayer={addPlayer} />
-        <Players>
-          {players.map((player, index) => (
-            <PlayerCard
-              key={index}
-              player={player}
-              onAddToShoppingCart={addToShoppingCart}
-            />
-          ))}
-        </Players>
-      </Grid>
+
+      <Switch>
+        <Route exact path="/">
+          <Grid>
+            <PlayerForm onAddPlayer={addPlayer} />
+            <Players>
+              {players.map((player, index) => (
+                <PlayerCard
+                  key={index}
+                  player={player}
+                  onAddToShoppingCart={addToShoppingCart}
+                />
+              ))}
+            </Players>
+          </Grid>
+        </Route>
+        <Route path="/cart">
+          <ShopingCart shoppingItems={shoppingCart} />
+        </Route>
+      </Switch>
     </div>
   );
 }
@@ -44,7 +58,13 @@ export default App;
 
 const Header = styled.header`
   display: flex;
-  justify-content: space>-between;
+  justify-content: space-between;
+
+  a {
+    text-decoration: none;
+    color: hsl(340, 10%, 5%);
+  }
+
   svg {
     width: 3rem;
     margin-right: 0.7rem;
