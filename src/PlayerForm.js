@@ -28,6 +28,8 @@ export default function PlayerForm({ onAddPlayer }) {
   function handleFormSubmit(event) {
     event.preventDefault();
     onAddPlayer(player);
+    setPlayer(initialPlayerState);
+    event.target.name.focus();
   }
 
   function updateTags(tag) {
