@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components/macro';
+import Tags from './Tags';
 
 export default function PlayerForm({ onAddPlayer }) {
   const initialPlayerState = {
@@ -8,6 +9,7 @@ export default function PlayerForm({ onAddPlayer }) {
     free_transfer: false,
     club: '',
     position: '',
+    tags: [],
     email: '',
   };
   const [player, setPlayer] = useState(initialPlayerState);
@@ -26,6 +28,15 @@ export default function PlayerForm({ onAddPlayer }) {
   function handleFormSubmit(event) {
     event.preventDefault();
     onAddPlayer(player);
+  }
+
+  function updateTags(tag) {
+    setPlayer({ ...player, tags: [...player.tags, tag] });
+  }
+
+  function deleteTag(tagToDelete) {
+    const tagsToKeep = player.tags.filter((tag) => tagToDelete !== tag);
+    setPlayer({ ...player, tags: tagsToKeep });
   }
 
   return (
@@ -111,6 +122,11 @@ export default function PlayerForm({ onAddPlayer }) {
           Goalie
         </label>
       </fieldset>
+      <Tags
+        tags={player.tags}
+        onUpdateTags={updateTags}
+        onDeleteTag={deleteTag}
+      />
 
       <label htmlFor="email">Contact Email</label>
       <input
