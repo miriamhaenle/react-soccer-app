@@ -1,14 +1,27 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 import { Switch, Route, NavLink } from 'react-router-dom';
 import { ReactComponent as Football } from './assets/football.svg';
 import PlayerForm from './PlayerForm';
 import PlayerCard from './PlayerCard';
 import ShopingCart from './ShoppingCart';
+import { saveToLocal, loadFromLocal } from './lib/localStorage';
 
 function App() {
-  const [players, setPlayers] = useState([]);
-  const [shoppingCart, setShoppingCart] = useState([]);
+  const [players, setPlayers] = useState(
+    loadFromLocal('footballPlayers') ?? []
+  );
+  const [shoppingCart, setShoppingCart] = useState(
+    loadFromLocal('shoppingCart') ?? []
+  );
+
+  useEffect(() => {
+    saveToLocal('footballPlayers', players);
+  }, [players]);
+
+  useEffect(() => {
+    saveToLocal('shoppingCart', shoppingCart);
+  }, [shoppingCart]);
 
   console.log(shoppingCart);
 
