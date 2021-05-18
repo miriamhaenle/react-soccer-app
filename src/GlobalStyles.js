@@ -16,4 +16,8 @@ body {
 h1 {
   margin-left: 2rem;
 }
+
+h2 {
+  text-align: center;
+}
 `;
