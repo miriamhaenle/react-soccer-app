@@ -74,6 +74,11 @@ const Table = styled.table`
     border-bottom: 2px solid hsl(160, 50%, 50%);
   }
 
+  tbody td:last-child,
+  tfoot td:last-child {
+    text-align: right;
+  }
+
   tfoot td {
     border-top: 2px solid hsl(160, 5%, 90%);
     font-size: 1.25rem;
