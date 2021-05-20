@@ -2,6 +2,8 @@ import { useState } from 'react';
 import styled from 'styled-components/macro';
 import Tags from './Tags';
 
+import validatePlayer from './lib/validation';
+
 export default function PlayerForm({ onAddPlayer }) {
   const initialPlayerState = {
     name: '',
@@ -9,10 +11,23 @@ export default function PlayerForm({ onAddPlayer }) {
     free_transfer: false,
     club: '',
     position: '',
-    tags: [],
+    skills: [],
     email: '',
   };
   const [player, setPlayer] = useState(initialPlayerState);
+  const [isError, setIsError] = useState(false);
+
+  function updateSkills(skillToAdd) {
+    const playerSkills = [...player.skills, skillToAdd];
+    setPlayer({ ...player, skills: playerSkills });
+  }
+
+  function deleteSkill(skillToDelete) {
+    const playerSkills = player.skills.filter(
+      (skill) => skill !== skillToDelete
+    );
+    setPlayer({ ...player, skills: playerSkills });
+  }
 
   function updatePlayer(event) {
     const fieldName = event.target.name;
@@ -27,21 +42,23 @@ export default function PlayerForm({ onAddPlayer }) {
 
   function handleFormSubmit(event) {
     event.preventDefault();
-    onAddPlayer(player);
-  }
 
-  function updateTags(tag) {
-    setPlayer({ ...player, tags: [...player.tags, tag] });
-  }
-
-  function deleteTag(tagToDelete) {
-    const tagsToKeep = player.tags.filter((tag) => tagToDelete !== tag);
-    setPlayer({ ...player, tags: tagsToKeep });
+    if (validatePlayer(player)) {
+      onAddPlayer(player);
+      setPlayer(initialPlayerState);
+      setIsError(false);
+    } else {
+      setIsError(true);
+      setTimeout(() => setIsError(false), 4000);
+    }
   }
 
   return (
     <Form onSubmit={handleFormSubmit}>
       <h2>Add new player</h2>
+      <ErrorBox isError={isError}>
+        <p>You have an error in your form.</p>
+      </ErrorBox>
       <label htmlFor="playerName">Player Name</label>
       <input
         type="text"
@@ -64,6 +81,7 @@ export default function PlayerForm({ onAddPlayer }) {
           onChange={updatePlayer}
           value={player.free_transfer}
           disabled={player.price.length >= 1}
+          checked={player.free_transfer}
         />
         <span>On a free transfer</span>
       </label>
@@ -122,10 +140,12 @@ export default function PlayerForm({ onAddPlayer }) {
           Goalie
         </label>
       </fieldset>
+
       <Tags
-        tags={player.tags}
-        onUpdateTags={updateTags}
-        onDeleteTag={deleteTag}
+        headline="Player skills"
+        tags={player.skills}
+        onUpdateTags={updateSkills}
+        onDeleteTag={deleteSkill}
       />
 
       <label htmlFor="email">Contact Email</label>
@@ -197,4 +217,16 @@ const Button = styled.button`
   cursor: pointer;
   font-weight: ${(props) => (props.isPrimary ? '600' : '100')};
   font-size: 1.2rem;
+`;
+
+const ErrorBox = styled.div`
+  background: hsl(340, 60%, 50%);
+  color: hsl(340, 95%, 95%);
+  padding: ${(props) => (props.isError ? '1.2rem' : 0)};
+  border-radius: 0.5rem;
+  opacity: ${(props) => (props.isError ? 1 : 0)};
+  max-height: ${(props) => (props.isError ? '100%' : '1px')};
+  transition: all 1s ease-in-out;
+  font-size: ${(props) => (props.isError ? '1rem' : '1px')};
+  font-weight: bold;
 `;

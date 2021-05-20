@@ -3,7 +3,12 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-export default function Tags({ tags, onUpdateTags, onDeleteTag }) {
+export default function Tags({
+  headline = 'Tags',
+  tags,
+  onUpdateTags,
+  onDeleteTag,
+}) {
   const [tagInput, setTagInput] = useState('');
 
   const handleChange = (event) => {
@@ -24,7 +29,7 @@ export default function Tags({ tags, onUpdateTags, onDeleteTag }) {
 
   return (
     <div>
-      <label htmlFor="tags">Special Skills</label>
+      <label htmlFor="tags">{headline}</label>
       <TagsContainer>
         {tags?.map((tag, index) => (
           <Tag key={index + tag}>
@@ -46,6 +51,7 @@ export default function Tags({ tags, onUpdateTags, onDeleteTag }) {
 }
 
 Tags.propTypes = {
+  headline: PropTypes.string,
   tags: PropTypes.arrayOf(PropTypes.string),
   onUpdateTags: PropTypes.func.isRequired,
   onDeleteTag: PropTypes.func.isRequired,
