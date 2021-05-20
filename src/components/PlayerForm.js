@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components/macro';
 import Tags from './Tags';
 
-import validatePlayer from './lib/validation';
+import validatePlayer from '../lib/validation';
 
 export default function PlayerForm({ onAddPlayer }) {
   const initialPlayerState = {

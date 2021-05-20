@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { ReactComponent as Football } from './assets/football.svg';
-import Logo from './assets/dfb_logo.png';
+import { ReactComponent as Football } from '../assets/football.svg';
+import Logo from '../assets/dfb_logo.png';
 
 export default function Header({ numberOfShoppingCartItems }) {
   return (

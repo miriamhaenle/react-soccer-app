@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 import { Switch, Route } from 'react-router-dom';
-import Header from './Header';
+import Header from './components/Header';
 import Home from './pages/Home';
-import PlayerForm from './PlayerForm';
-import PlayerCard from './PlayerCard';
-import ShopingCart from './ShoppingCart';
+import PlayerForm from './components/PlayerForm';
+import PlayerCard from './components/PlayerCard';
+import ShopingCart from './pages/ShoppingCart';
 import { saveToLocal, loadFromLocal } from './lib/localStorage';
 
 function App() {

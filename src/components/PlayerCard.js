@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ReactComponent as Football } from './assets/football.svg';
+import { ReactComponent as Football } from '../assets/football.svg';
 
 export default function PlayerCard({ player, onAddToShoppingCart }) {
   return (
