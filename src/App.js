@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 import { Switch, Route } from 'react-router-dom';
 import Header from './Header';
+import Home from './pages/Home';
 import PlayerForm from './PlayerForm';
 import PlayerCard from './PlayerCard';
 import ShopingCart from './ShoppingCart';
@@ -38,18 +39,10 @@ function App() {
       <Header numberOfShoppingCartItems={shoppingCart.length} />
       <Switch>
         <Route exact path="/">
-          <Grid>
-            <PlayerForm onAddPlayer={addPlayer} />
-            <Players>
-              {players.map((player, index) => (
-                <PlayerCard
-                  key={index}
-                  player={player}
-                  onAddToShoppingCart={addToShoppingCart}
-                />
-              ))}
-            </Players>
-          </Grid>
+          <Home players={players} onAddToShoppingCart={addToShoppingCart} />
+        </Route>
+        <Route path="/addplayer">
+          <PlayerForm onAddPlayer={addPlayer} />
         </Route>
         <Route path="/cart">
           <ShopingCart shoppingItems={shoppingCart} />
@@ -60,21 +53,3 @@ function App() {
 }
 
 export default App;
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-
-  gap: 1rem;
-  justify-content: center;
-
-  @media (min-width: 576px) {
-    grid-template-columns: 1fr 2fr;
-  }
-`;
-
-const Players = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-`;

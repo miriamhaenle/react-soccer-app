@@ -13,6 +13,13 @@ export default function Header({ numberOfShoppingCartItems }) {
 
       <h1>German Fußball Transfer Market</h1>
 
+      <NavLink to="/addplayer">
+        <ShoppingCartDisplay>
+          <PlusIcon>+</PlusIcon>
+          <span>Add player</span>
+        </ShoppingCartDisplay>
+      </NavLink>
+
       <NavLink to="/cart">
         <ShoppingCartDisplay highlight={numberOfShoppingCartItems}>
           <Football /> {numberOfShoppingCartItems}{' '}
@@ -55,4 +62,16 @@ const ShoppingCartDisplay = styled.section`
   align-items: center;
 
   font-weight: ${(props) => props.highlight && 'bold'};
+`;
+
+const PlusIcon = styled.span`
+  display: inline-grid;
+  place-items: center;
+  font-size: 2rem;
+  background: hsl(160, 60%, 50%);
+  color: hsl(160, 5%, 90%);
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  margin-right: 0.7rem;
 `;
