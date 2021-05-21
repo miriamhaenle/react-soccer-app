@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import PlayerCard from '../PlayerCard';
+import PlayerCard from '../components/PlayerCard';
 
 export default function ({ players, onAddToShoppingCart }) {
   return (
