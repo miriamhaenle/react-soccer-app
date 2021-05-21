@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
-import styled from 'styled-components/macro';
 import { Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './pages/Home';
 import PlayerForm from './components/PlayerForm';
-import PlayerCard from './components/PlayerCard';
 import ShoppingCart from './pages/ShoppingCart';
 import { saveToLocal, loadFromLocal } from './lib/localStorage';
 
