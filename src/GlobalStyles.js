@@ -11,6 +11,11 @@ body {
   font-family: sans-serif;
   margin: 0;
   padding: 0;
+  position: relative;
+}
+
+main {
+  margin-top: 8rem;
 }
 
 h1 {

@@ -37,17 +37,19 @@ function App() {
   return (
     <div>
       <Header numberOfShoppingCartItems={shoppingCart.length} />
-      <Switch>
-        <Route exact path="/">
-          <Home players={players} onAddToShoppingCart={addToShoppingCart} />
-        </Route>
-        <Route path="/addplayer">
-          <PlayerForm onAddPlayer={addPlayer} />
-        </Route>
-        <Route path="/cart">
-          <ShopingCart shoppingItems={shoppingCart} />
-        </Route>
-      </Switch>
+      <main>
+        <Switch>
+          <Route exact path="/">
+            <Home players={players} onAddToShoppingCart={addToShoppingCart} />
+          </Route>
+          <Route path="/addplayer">
+            <PlayerForm onAddPlayer={addPlayer} />
+          </Route>
+          <Route path="/cart">
+            <ShopingCart shoppingItems={shoppingCart} />
+          </Route>
+        </Switch>
+      </main>
     </div>
   );
 }
