@@ -5,7 +5,7 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import PlayerForm from './components/PlayerForm';
 import PlayerCard from './components/PlayerCard';
-import ShopingCart from './pages/ShoppingCart';
+import ShoppingCart from './pages/ShoppingCart';
 import { saveToLocal, loadFromLocal } from './lib/localStorage';
 
 function App() {
@@ -45,7 +45,7 @@ function App() {
           <PlayerForm onAddPlayer={addPlayer} />
         </Route>
         <Route path="/cart">
-          <ShopingCart shoppingItems={shoppingCart} />
+          <ShoppingCart shoppingItems={shoppingCart} />
         </Route>
       </Switch>
     </div>
