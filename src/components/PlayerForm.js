@@ -4,7 +4,7 @@ import Tags from './Tags';
 
 import validatePlayer from '../lib/validation';
 
-export default function PlayerForm({ onAddPlayer }) {
+export default function PlayerForm({ onAddPlayer, clubs }) {
   const initialPlayerState = {
     name: '',
     price: '',
@@ -88,13 +88,11 @@ export default function PlayerForm({ onAddPlayer }) {
       <label htmlFor="club">Club</label>
       <select name="club" id="club" onChange={updatePlayer} value={player.club}>
         <option value="">---Please select ---</option>
-        <option value="fc_bayern">FC Bayern</option>
-        <option value="sv_werder">SV Werder Bremen</option>
-        <option value="vfb_stuttgart">VFB Stuttgart</option>
-        <option value="rb_leipzeig">RB Leipzig</option>
-        <option value="hansa_rostock">Hansa Rostock</option>
-        <option value="eintracht_frankfurt">Eintracht Frankfurt</option>
-        <option value="fc_st_pauli">FC St. Pauli</option>
+        {clubs.map((club) => (
+          <option key={club._id} value={club.name}>
+            {club.name}
+          </option>
+        ))}
       </select>
 
       <fieldset>

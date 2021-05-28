@@ -13,6 +13,15 @@ function App() {
   const [shoppingCart, setShoppingCart] = useState(
     loadFromLocal('shoppingCart') ?? []
   );
+  const [clubs, setClubs] = useState([]);
+  console.log(clubs);
+
+  useEffect(() => {
+    fetch('/clubs')
+      .then((result) => result.json())
+      .then((clubs) => setClubs(clubs))
+      .catch((error) => console.error(error.message));
+  }, []);
 
   useEffect(() => {
     saveToLocal('footballPlayers', players);
@@ -40,7 +49,7 @@ function App() {
           <Home players={players} onAddToShoppingCart={addToShoppingCart} />
         </Route>
         <Route path="/addplayer">
-          <PlayerForm onAddPlayer={addPlayer} />
+          <PlayerForm onAddPlayer={addPlayer} clubs={clubs} />
         </Route>
         <Route path="/cart">
           <ShoppingCart shoppingItems={shoppingCart} />
