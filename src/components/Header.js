@@ -38,6 +38,9 @@ const HeaderNavigation = styled.header`
   align-items: center;
   padding: 0 2rem;
   position: ${(props) => (props.isStatic ? 'static' : 'fixed')};
+  top: 0;
+  right: 0;
+  left: 0;
 
   a {
     text-decoration: none;
