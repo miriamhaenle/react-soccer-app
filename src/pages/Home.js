@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import PlayerCard from '../components/PlayerCard';
 
-export default function ({ players, onAddToShoppingCart }) {
+export default function Home({ players, onAddToShoppingCart }) {
   return (
     <Players>
       {players.map((player, index) => (
