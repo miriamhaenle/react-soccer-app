@@ -72,7 +72,7 @@ const ShoppingCartDisplay = styled.section`
 const PlusIcon = styled.span`
   display: inline-grid;
   place-items: center;
-  font-size: 2rem;
+  font-size: 1.4rem;
   background: hsl(160, 60%, 50%);
   color: hsl(160, 5%, 90%);
   border-radius: 50%;

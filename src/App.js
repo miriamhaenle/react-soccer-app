@@ -55,7 +55,7 @@ function App() {
       }),
     })
       .then((result) => result.json())
-      .then((player) => setPlayers([...players, player]))
+      .then((player) => setPlayers([...players, player])) // TODO: Add a success note on top of the form
       .catch((error) => console.log(error.message)); // reicht ausloggen?
   }
 

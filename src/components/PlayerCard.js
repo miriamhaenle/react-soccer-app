@@ -10,22 +10,22 @@ export default function PlayerCard({
 }) {
   return (
     <Card>
-      <DeleteFunction onClick={() => onDeletePlayer(player)}>
-        &times;
-      </DeleteFunction>
       <ShoppingCart onClick={() => onAddToShoppingCart(player)}>
         <Football />
       </ShoppingCart>
-      <h3>
-        {player.name}
-        <span onClick={() => onOpenEditModal(player)}>
-          <StyledPen />
-        </span>
-      </h3>
+      <h3>{player.name}</h3>
       <p>{player.price}</p>
       <p>{player.club}</p>
       <p>{player.position}</p>
       <a href={`mailto:${player.email}`}>{player.email}</a>
+      <EditBar>
+        <EditIcon onClick={() => onOpenEditModal(player)}>
+          <StyledPen />
+        </EditIcon>
+        <EditIcon onClick={() => onDeletePlayer(player)}>
+          <DeleteFunction>&times;</DeleteFunction>
+        </EditIcon>
+      </EditBar>
     </Card>
   );
 }
@@ -53,25 +53,39 @@ const Card = styled.article`
   }
 `;
 
-const DeleteFunction = styled.span`
+const EditBar = styled.div`
   position: absolute;
-  top: 0.7rem;
-  right: 3.3rem;
+  bottom: 1.2rem;
+  right: 0.2rem;
+`;
+
+const EditIcon = styled.div`
+  border: 2px solid white;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-grid;
+  margin-right: 0.5rem;
+  place-items: center;
+  position: relative;
+  width: 2.2rem;
+  height: 2.2rem;
+`;
+
+const DeleteFunction = styled.span`
   color: hsl(340, 60%, 50%);
   font-size: 1.3rem;
-  cursor: pointer;
 `;
 
 const StyledPen = styled(Pen)`
-  transform: scale(0.5);
-  position: absolute;
-  top: -1rem;
+  fill: white;
+  height: 1rem;
+  width: 1rem;
 `;
 
 const ShoppingCart = styled(Football)`
-  width: 2.4rem;
+  width: 2.8rem;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 0.5rem;
+  right: 0.2rem;
   cursor: pointer;
 `;
