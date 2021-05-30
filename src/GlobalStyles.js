@@ -13,6 +13,10 @@ body {
   padding: 0;
 }
 
+main {
+  margin-top: 8rem;
+}
+
 h1 {
   margin-left: 2rem;
 }
