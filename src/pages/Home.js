@@ -51,6 +51,7 @@ const Players = styled.div`
   flex-wrap: wrap;
   gap: 0.5rem;
   position: relative;
+  margin: 0 1rem;
 `;
 
 const FormWrapper = styled.div`

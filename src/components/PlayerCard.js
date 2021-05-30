@@ -36,7 +36,7 @@ const Card = styled.article`
   color: hsl(160, 96%, 96%);
   padding: 1.2rem 1rem;
   height: 12rem;
-  min-width: calc((100% - 2rem) / 3);
+  min-width: calc((100% - 1rem) / 3);
   position: relative;
 
   h3 {
