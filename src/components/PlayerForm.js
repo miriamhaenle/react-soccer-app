@@ -4,7 +4,7 @@ import Tags from './Tags';
 
 import validatePlayer from '../lib/validation';
 
-export default function PlayerForm({ onAddPlayer, clubs }) {
+export default function PlayerForm({ onAddPlayer, clubs, playerToEdit }) {
   const initialPlayerState = {
     name: '',
     price: '',
@@ -14,7 +14,7 @@ export default function PlayerForm({ onAddPlayer, clubs }) {
     skills: [],
     email: '',
   };
-  const [player, setPlayer] = useState(initialPlayerState);
+  const [player, setPlayer] = useState(playerToEdit ?? initialPlayerState);
   const [isError, setIsError] = useState(false);
 
   function updateSkills(skillToAdd) {

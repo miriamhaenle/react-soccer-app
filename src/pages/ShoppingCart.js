@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 export default function ShoppingCart({ shoppingItems }) {
   const totalSum = shoppingItems.reduce((acc, cur) => acc + +cur.price, 0);
   const formatedSum = new Intl.NumberFormat('de-DE', {

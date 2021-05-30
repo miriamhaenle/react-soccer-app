@@ -1,11 +1,27 @@
 import styled from 'styled-components';
 import { ReactComponent as Football } from '../assets/football.svg';
+import { ReactComponent as Pen } from '../assets/pencil.svg';
 
-export default function PlayerCard({ player, onAddToShoppingCart }) {
+export default function PlayerCard({
+  player,
+  onAddToShoppingCart,
+  onDeletePlayer,
+  onOpenEditModal,
+}) {
   return (
     <Card>
-      <Football onClick={() => onAddToShoppingCart(player)} />
-      <h3>{player.name}</h3>
+      <DeleteFunction onClick={() => onDeletePlayer(player)}>
+        &times;
+      </DeleteFunction>
+      <ShoppingCart onClick={() => onAddToShoppingCart(player)}>
+        <Football />
+      </ShoppingCart>
+      <h3>
+        {player.name}
+        <span onClick={() => onOpenEditModal(player)}>
+          <StyledPen />
+        </span>
+      </h3>
       <p>{player.price}</p>
       <p>{player.club}</p>
       <p>{player.position}</p>
@@ -13,7 +29,6 @@ export default function PlayerCard({ player, onAddToShoppingCart }) {
     </Card>
   );
 }
-// are you though?
 
 const Card = styled.article`
   background: hsl(160, 60%, 50%);
@@ -24,15 +39,9 @@ const Card = styled.article`
   min-width: calc((100% - 2rem) / 3);
   position: relative;
 
-  svg {
-    width: 2.4rem;
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
-
   h3 {
     margin-top: 0;
+    position: relative;
   }
 
   p {
@@ -42,4 +51,27 @@ const Card = styled.article`
   a {
     color: hsl(160, 10%, 20%);
   }
+`;
+
+const DeleteFunction = styled.span`
+  position: absolute;
+  top: 0.7rem;
+  right: 3.3rem;
+  color: hsl(340, 60%, 50%);
+  font-size: 1.3rem;
+  cursor: pointer;
+`;
+
+const StyledPen = styled(Pen)`
+  transform: scale(0.5);
+  position: absolute;
+  top: -1rem;
+`;
+
+const ShoppingCart = styled(Football)`
+  width: 2.4rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
 `;
