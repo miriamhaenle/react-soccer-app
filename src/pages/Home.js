@@ -31,14 +31,17 @@ export default function Home({
             onOpenEditModal={openModal}
           />
         ))}
+        {isShowingEditModal && (
+          <FormWrapper>
+            <PlayerForm
+              headlineText={'Edit player'}
+              clubs={clubs}
+              playerToEdit={playerToEdit}
+              onAddPlayer={onAddPlayer}
+            />
+          </FormWrapper>
+        )}
       </Players>
-      {isShowingEditModal && (
-        <PlayerForm
-          clubs={clubs}
-          playerToEdit={playerToEdit}
-          onAddPlayer={onAddPlayer}
-        />
-      )}
     </>
   );
 }
@@ -47,4 +50,15 @@ const Players = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  position: relative;
+`;
+
+const FormWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  right: auto;
+  left: auto;
+  background: white;
+  margin: 0 auto;
+  width: 100vw;
 `;

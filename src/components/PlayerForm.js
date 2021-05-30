@@ -4,7 +4,12 @@ import Tags from './Tags';
 
 import validatePlayer from '../lib/validation';
 
-export default function PlayerForm({ onAddPlayer, clubs, playerToEdit }) {
+export default function PlayerForm({
+  headlineText,
+  onAddPlayer,
+  clubs,
+  playerToEdit,
+}) {
   const initialPlayerState = {
     name: '',
     price: '',
@@ -55,7 +60,7 @@ export default function PlayerForm({ onAddPlayer, clubs, playerToEdit }) {
 
   return (
     <Form onSubmit={handleFormSubmit}>
-      <h2>Add new player</h2>
+      <h2>{headlineText}</h2>
       <ErrorBox isError={isError}>
         <p>You have an error in your form.</p>
       </ErrorBox>
@@ -153,7 +158,7 @@ export default function PlayerForm({ onAddPlayer, clubs, playerToEdit }) {
         onChange={updatePlayer}
         value={player.email}
       />
-      <Button isPrimary>Add player</Button>
+      <Button isPrimary>Submit</Button>
       <Button type="reset" onClick={() => setPlayer(initialPlayerState)}>
         Cancel
       </Button>

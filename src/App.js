@@ -123,7 +123,11 @@ function App() {
             />
           </Route>
           <Route path="/addplayer">
-            <PlayerForm onAddPlayer={addPlayer} clubs={clubs} />
+            <PlayerForm
+              headlineText={'Add a new player'}
+              onAddPlayer={addPlayer}
+              clubs={clubs}
+            />
           </Route>
           <Route path="/cart">
             <ShoppingCart shoppingItems={shoppingCart} />
