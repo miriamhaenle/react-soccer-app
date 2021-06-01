@@ -61,7 +61,7 @@ function App() {
     })
       .then((result) => result.json())
       .then((player) => setPlayers([...players, player])) // TODO: Add a success note on top of the form
-      .catch((error) => console.log(error.message)); // reicht ausloggen?
+      .catch((error) => console.log(error.message));
   }
 
   function addToShoppingCart(playerToAdd) {
@@ -76,19 +76,21 @@ function App() {
   }
 
   function deletePlayer(playerToDelete) {
-    console.log(playerToDelete);
-    const remainingPlayers = players.filter(
-      (player) => player._id !== playerToDelete._id
-    );
-    setPlayers(remainingPlayers);
-
     fetch(`http://localhost:4000/players/${playerToDelete._id}`, {
       method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-    });
-    /*  .then((result) => result.json())
-      .then(setPlayers(remainingPlayers)) */ //wie stell ich sicher, dass die remainingplayers erst dann gesetzt werden, wenn der fetch geklappt hat?
-    /*    .catch((error) => console.log(error.message)); */
+    })
+      .then((result) => result.json())
+      .then((response) => {
+        if (response.data && response.data._id) {
+          const playersToKeep = players.filter(
+            (player) => player._id !== response.data._id
+          );
+          setPlayers(playersToKeep);
+        } else {
+          console.log('Player could not be deleted');
+        }
+      })
+      .catch((error) => console.log(error.message));
   }
 
   function updatePlayer(playerToEdit) {
