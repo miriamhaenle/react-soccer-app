@@ -66,7 +66,6 @@ function App() {
   function deletePlayer(playerToDelete) {
     fetch(`http://localhost:4000/players/${playerToDelete._id}`, {
       method: 'DELETE',
-      /*  headers: { 'Content-Type': 'application/json' }, */
     })
       .then((result) => result.json())
       .then((response) => {
