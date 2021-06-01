@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
-export default function ShoppingCart({ shoppingItems }) {
-  const totalSum = shoppingItems.reduce((acc, cur) => acc + +cur.price, 0);
-  const formatedSum = new Intl.NumberFormat('de-DE', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-  }).format(totalSum);
+export default function ShoppingCart({ shoppingCart }) {
+  const totalSum = shoppingCart.transferSum;
+  const formatedSum = (sum) =>
+    new Intl.NumberFormat('de-DE', {
+      style: 'currency',
+      currency: 'EUR',
+      maximumFractionDigits: 0,
+    }).format(sum);
   return (
     <>
       <h2>Shopping Cart</h2>
@@ -18,17 +19,17 @@ export default function ShoppingCart({ shoppingItems }) {
           </tr>
         </thead>
         <tbody>
-          {shoppingItems.map((item, index) => (
-            <tr key={index}>
-              <td>{item.name}</td>
-              <td>{item.price}</td>
+          {shoppingCart.players.map((orderLine, index) => (
+            <tr key={orderLine.player._id}>
+              <td>{orderLine.player.name}</td>
+              <td>{formatedSum(orderLine.player.price)}</td>
             </tr>
           ))}
         </tbody>
         <tfoot>
           <tr>
             <td>Sum total:</td>
-            <td>{formatedSum}</td>
+            <td>{formatedSum(totalSum)}</td>
           </tr>
         </tfoot>
       </Table>

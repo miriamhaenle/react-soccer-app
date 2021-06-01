@@ -26,6 +26,11 @@ function App() {
       .then((result) => result.json())
       .then((apiPlayers) => setPlayers(apiPlayers))
       .catch((error) => console.log(error.message));
+
+    fetch('http://localhost:4000/shopping-cart/60b3b08548f2311120994168')
+      .then((result) => result.json())
+      .then((shoppingCart) => setShoppingCart(shoppingCart))
+      .catch((error) => console.error(error.message));
   }, []);
 
   useEffect(() => {
@@ -60,7 +65,14 @@ function App() {
   }
 
   function addToShoppingCart(playerToAdd) {
-    setShoppingCart([...shoppingCart, playerToAdd]);
+    fetch('http://localhost:4000/shopping-cart/60b3b08548f2311120994168', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ player: playerToAdd._id }),
+    })
+      .then((result) => result.json())
+      .then((updatedShoppingCart) => setShoppingCart(updatedShoppingCart))
+      .catch((error) => console.error(error));
   }
 
   function deletePlayer(playerToDelete) {
@@ -108,7 +120,7 @@ function App() {
 
   return (
     <>
-      <Header numberOfShoppingCartItems={shoppingCart.length} />
+      <Header numberOfShoppingCartItems={shoppingCart?.players?.length} />
       <main>
         <Switch>
           <Route exact path="/">
@@ -130,7 +142,7 @@ function App() {
             />
           </Route>
           <Route path="/cart">
-            <ShoppingCart shoppingItems={shoppingCart} />
+            <ShoppingCart shoppingCart={shoppingCart} />
           </Route>
         </Switch>
       </main>
