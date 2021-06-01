@@ -120,6 +120,24 @@ function App() {
     setIsShowingEditModal(false);
   }
 
+  function removePlayer(playerToRemove) {
+    const shoppingCartToUpdate = {
+      ...shoppingCart,
+      players: shoppingCart.players.filter(
+        (player) => player._id !== playerToRemove._id
+      ),
+    };
+
+    fetch('http://localhost:4000/shopping-cart/60b3b08548f2311120994168', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(shoppingCartToUpdate),
+    })
+      .then((result) => result.json())
+      .then((updatedShoppingCart) => setShoppingCart(updatedShoppingCart))
+      .catch((error) => console.error(error.message));
+  }
+
   return (
     <>
       <Header numberOfShoppingCartItems={shoppingCart?.players?.length} />
@@ -144,7 +162,10 @@ function App() {
             />
           </Route>
           <Route path="/cart">
-            <ShoppingCart shoppingCart={shoppingCart} />
+            <ShoppingCart
+              shoppingCart={shoppingCart}
+              onRemovePlayer={removePlayer}
+            />
           </Route>
         </Switch>
       </main>

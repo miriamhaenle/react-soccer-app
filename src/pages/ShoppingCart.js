@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default function ShoppingCart({ shoppingCart }) {
+export default function ShoppingCart({ shoppingCart, onRemovePlayer }) {
   const totalSum = shoppingCart.transferSum;
   const formatedSum = (sum) =>
     new Intl.NumberFormat('de-DE', {
@@ -15,21 +15,30 @@ export default function ShoppingCart({ shoppingCart }) {
         <thead>
           <tr>
             <th>Player name</th>
-            <th>Player price</th>
+            <th className="align-right">Player price</th>
+            <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
           {shoppingCart.players.map((orderLine, index) => (
             <tr key={orderLine.player._id}>
               <td>{orderLine.player.name}</td>
-              <td>{formatedSum(orderLine.player.price)}</td>
+              <td className="align-right">
+                {formatedSum(orderLine.player.price)}
+              </td>
+              <td className="align-right">
+                <EditIcon onClick={() => onRemovePlayer(orderLine.player)}>
+                  &times;
+                </EditIcon>
+              </td>
             </tr>
           ))}
         </tbody>
         <tfoot>
           <tr>
             <td>Sum total:</td>
-            <td>{formatedSum(totalSum)}</td>
+            <td className="align-right">{formatedSum(totalSum)}</td>
+            <td>&nbsp;</td>
           </tr>
         </tfoot>
       </Table>
@@ -84,4 +93,20 @@ const Table = styled.table`
     font-weight: bold;
     color: hsl(160, 50%, 50%);
   }
+
+  .align-right {
+    text-align: right;
+  }
+`;
+
+const EditIcon = styled.div`
+  border: 2px solid hsl(160, 5%, 70%);
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-grid;
+  margin-right: 0.5rem;
+  place-items: center;
+  position: relative;
+  width: 2.2rem;
+  height: 2.2rem;
 `;
